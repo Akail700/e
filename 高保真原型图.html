@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>运动器材商城 - 高保真原型图</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+        
+        .prototype-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .prototype-header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .prototype-header h1 {
+            color: #667eea;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .prototype-header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .prototype-section {
+            margin-bottom: 40px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .section-content {
+            padding: 30px;
+        }
+        
+        /* 导航栏原型 */
+        .navbar-prototype {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .logo-prototype {
+            display: flex;
+            align-items: center;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+        
+        .logo-prototype::before {
+            content: "🏋️";
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .nav-menu-prototype {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-item-prototype {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: background 0.3s;
+        }
+        
+        .nav-item-prototype:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .nav-actions-prototype {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .nav-btn-prototype {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        
+        /* 轮播图原型 */
+        .hero-prototype {
+            position: relative;
+            height: 400px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .hero-content-prototype {
+            z-index: 2;
+        }
+        
+        .hero-content-prototype h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .hero-content-prototype p {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+        }
+        
+        .cta-btn-prototype {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+        
+        .slider-controls-prototype {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+        
+        .slider-btn-prototype {
+            background: rgba(255,255,255,0.3);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        /* 商品分类原型 */
+        .categories-prototype {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .category-item-prototype {
+            background: #f8f9fa;
+            padding: 30px 20px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        
+        .category-item-prototype:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-5px);
+        }
+        
+        .category-icon-prototype {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        /* 商品网格原型 */
+        .products-grid-prototype {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .product-card-prototype {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .product-card-prototype:hover {
+            transform: translateY(-5px);
+        }
+        
+        .product-image-prototype {
+            height: 200px;
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #999;
+            position: relative;
+        }
+        
+        .product-badge-prototype {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #ff4757;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+        }
+        
+        .product-info-prototype {
+            padding: 20px;
+        }
+        
+        .product-title-prototype {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .product-description-prototype {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .product-price-prototype {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .current-price-prototype {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ff4757;
+        }
+        
+        .original-price-prototype {
+            color: #999;
+            text-decoration: line-through;
+        }
+        
+        .product-actions-prototype {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .add-cart-btn-prototype {
+            flex: 1;
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        
+        .quick-view-btn-prototype {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        
+        /* 购物车原型 */
+        .cart-prototype {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+        
+        .cart-header-prototype {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-item-prototype {
+            display: flex;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-item-image-prototype {
+            width: 60px;
+            height: 60px;
+            background: #f0f0f0;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+        }
+        
+        .cart-item-info-prototype {
+            flex: 1;
+        }
+        
+        .cart-item-title-prototype {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .cart-item-price-prototype {
+            color: #ff4757;
+            font-weight: bold;
+        }
+        
+        .quantity-controls-prototype {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .quantity-btn-prototype {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            width: 25px;
+            height: 25px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .cart-total-prototype {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        
+        .checkout-btn-prototype {
+            width: 100%;
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        /* 登录表单原型 */
+        .login-form-prototype {
+            max-width: 400px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+        
+        .form-group-prototype {
+            margin-bottom: 20px;
+        }
+        
+        .form-label-prototype {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .form-input-prototype {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        
+        .form-input-prototype:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+        }
+        
+        .form-submit-prototype {
+            width: 100%;
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        /* 响应式设计原型 */
+        .responsive-demo {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .device-frame {
+            border: 3px solid #333;
+            border-radius: 10px;
+            overflow: hidden;
+            background: white;
+        }
+        
+        .device-screen {
+            background: #f8f9fa;
+            padding: 10px;
+            font-size: 0.8rem;
+        }
+        
+        .desktop-frame {
+            border-radius: 8px;
+        }
+        
+        .tablet-frame {
+            border-radius: 15px;
+            transform: scale(0.8);
+        }
+        
+        .mobile-frame {
+            border-radius: 20px;
+            transform: scale(0.6);
+        }
+        
+        /* 颜色方案展示 */
+        .color-palette {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .color-item {
+            text-align: center;
+        }
+        
+        .color-swatch {
+            width: 100%;
+            height: 80px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .color-primary { background: #667eea; }
+        .color-secondary { background: #764ba2; }
+        .color-accent { background: #ff6b6b; }
+        .color-success { background: #28a745; }
+        .color-warning { background: #ffc107; color: #333; }
+        .color-danger { background: #dc3545; }
+        
+        /* 字体样式展示 */
+        .typography-demo {
+            margin-top: 20px;
+        }
+        
+        .font-sample {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+        
+        .font-h1 { font-size: 2.5rem; font-weight: bold; }
+        .font-h2 { font-size: 2rem; font-weight: bold; }
+        .font-h3 { font-size: 1.5rem; font-weight: bold; }
+        .font-body { font-size: 1rem; }
+        .font-small { font-size: 0.875rem; color: #666; }
+        
+        /* 交互状态展示 */
+        .interaction-demo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .interaction-item {
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        
+        .interaction-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-color: #667eea;
+        }
+        
+        .interaction-item.active {
+            background: #667eea;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .responsive-demo {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-menu-prototype {
+                display: none;
+            }
+            
+            .hero-content-prototype h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="prototype-container">
+        <!-- 原型图标题 -->
+        <div class="prototype-header">
+            <h1>运动器材商城高保真原型图</h1>
+            <p>展示网站的视觉设计、布局结构和交互效果</p>
+        </div>
+        
+        <!-- 导航栏原型 -->
+        <div class="prototype-section">
+            <div class="section-title">1. 导航栏设计</div>
+            <div class="section-content">
+                <div class="navbar-prototype">
+                    <div class="logo-prototype">运动器材商城</div>
+                    <div class="nav-menu-prototype">
+                        <a href="#" class="nav-item-prototype">首页</a>
+                        <a href="#" class="nav-item-prototype">商品</a>
+                        <a href="#" class="nav-item-prototype">关于我们</a>
+                        <a href="#" class="nav-item-prototype">联系我们</a>
+                    </div>
+                    <div class="nav-actions-prototype">
+                        <button class="nav-btn-prototype">🔍</button>
+                        <button class="nav-btn-prototype">🛒 (2)</button>
+                        <button class="nav-btn-prototype">登录</button>
+                    </div>
+                </div>
+                <p><strong>设计说明：</strong>采用渐变背景，固定在页面顶部，包含Logo、主导航菜单和功能按钮。响应式设计，移动端自动隐藏菜单。</p>
+            </div>
+        </div>
+        
+        <!-- 轮播图原型 -->
+        <div class="prototype-section">
+            <div class="section-title">2. 首页轮播图</div>
+            <div class="section-content">
+                <div class="hero-prototype">
+                    <div class="hero-content-prototype">
+                        <h2>专业健身器材</h2>
+                        <p>打造完美身材，从选择优质器材开始</p>
+                        <button class="cta-btn-prototype">立即购买</button>
+                    </div>
+                    <div class="slider-controls-prototype">
+                        <button class="slider-btn-prototype">‹</button>
+                        <button class="slider-btn-prototype">›</button>
+                    </div>
+                </div>
+                <p><strong>设计说明：</strong>全屏轮播图展示主要产品，包含标题、描述和行动按钮。支持自动播放和手动控制。</p>
+            </div>
+        </div>
+        
+        <!-- 商品分类原型 -->
+        <div class="prototype-section">
+            <div class="section-title">3. 商品分类展示</div>
+            <div class="section-content">
+                <div class="categories-prototype">
+                    <div class="category-item-prototype">
+                        <span class="category-icon-prototype">🏋️</span>
+                        <h3>健身器材</h3>
+                    </div>
+                    <div class="category-item-prototype">
+                        <span class="category-icon-prototype">🏃</span>
+                        <h3>有氧设备</h3>
+                    </div>
+                    <div class="category-item-prototype">
+                        <span class="category-icon-prototype">🧘</span>
+                        <h3>瑜伽用品</h3>
+                    </div>
+                    <div class="category-item-prototype">
+                        <span class="category-icon-prototype">👕</span>
+                        <h3>运动配件</h3>
+                    </div>
+                </div>
+                <p><strong>设计说明：</strong>网格布局展示商品分类，每个分类包含图标和名称。悬停时有颜色变化和位移效果。</p>
+            </div>
+        </div>
+        
+        <!-- 商品展示原型 -->
+        <div class="prototype-section">
+            <div class="section-title">4. 商品展示网格</div>
+            <div class="section-content">
+                <div class="products-grid-prototype">
+                    <div class="product-card-prototype">
+                        <div class="product-image-prototype">
+                            🏋️
+                            <div class="product-badge-prototype">热销</div>
+                        </div>
+                        <div class="product-info-prototype">
+                            <h3 class="product-title-prototype">专业哑铃套装</h3>
+                            <p class="product-description-prototype">可调节重量，适合家庭健身使用</p>
+                            <div class="product-price-prototype">
+                                <span class="current-price-prototype">¥299</span>
+                                <span class="original-price-prototype">¥399</span>
+                            </div>
+                            <div class="product-actions-prototype">
+                                <button class="add-cart-btn-prototype">加入购物车</button>
+                                <button class="quick-view-btn-prototype">👁️</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card-prototype">
+                        <div class="product-image-prototype">
+                            🏃
+                            <div class="product-badge-prototype">新品</div>
+                        </div>
+                        <div class="product-info-prototype">
+                            <h3 class="product-title-prototype">智能跑步机</h3>
+                            <p class="product-description-prototype">静音设计，多种运动模式</p>
+                            <div class="product-price-prototype">
+                                <span class="current-price-prototype">¥2999</span>
+                                <span class="original-price-prototype">¥3999</span>
+                            </div>
+                            <div class="product-actions-prototype">
+                                <button class="add-cart-btn-prototype">加入购物车</button>
+                                <button class="quick-view-btn-prototype">👁️</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card-prototype">
+                        <div class="product-image-prototype">
+                            🧘
+                            <div class="product-badge-prototype">特价</div>
+                        </div>
+                        <div class="product-info-prototype">
+                            <h3 class="product-title-prototype">瑜伽垫套装</h3>
+                            <p class="product-description-prototype">环保材质，防滑设计</p>
+                            <div class="product-price-prototype">
+                                <span class="current-price-prototype">¥89</span>
+                                <span class="original-price-prototype">¥129</span>
+                            </div>
+                            <div class="product-actions-prototype">
+                                <button class="add-cart-btn-prototype">加入购物车</button>
+                                <button class="quick-view-btn-prototype">👁️</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p><strong>设计说明：</strong>响应式网格布局，商品卡片包含图片、标题、描述、价格和操作按钮。悬停时有阴影和位移效果。</p>
+            </div>
+        </div>
+        
+        <!-- 购物车原型 -->
+        <div class="prototype-section">
+            <div class="section-title">5. 购物车设计</div>
+            <div class="section-content">
+                <div class="cart-prototype">
+                    <div class="cart-header-prototype">
+                        <h3>购物车</h3>
+                        <button>✕</button>
+                    </div>
+                    
+                    <div class="cart-item-prototype">
+                        <div class="cart-item-image-prototype">🏋️</div>
+                        <div class="cart-item-info-prototype">
+                            <div class="cart-item-title-prototype">专业哑铃套装</div>
+                            <div class="cart-item-price-prototype">¥299</div>
+                            <div class="quantity-controls-prototype">
+                                <button class="quantity-btn-prototype">-</button>
+                                <span>1</span>
+                                <button class="quantity-btn-prototype">+</button>
+                                <button class="quantity-btn-prototype" style="margin-left: 10px; color: #ff4757;">🗑️</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cart-item-prototype">
+                        <div class="cart-item-image-prototype">🧘</div>
+                        <div class="cart-item-info-prototype">
+                            <div class="cart-item-title-prototype">瑜伽垫套装</div>
+                            <div class="cart-item-price-prototype">¥89</div>
+                            <div class="quantity-controls-prototype">
+                                <button class="quantity-btn-prototype">-</button>
+                                <span>2</span>
+                                <button class="quantity-btn-prototype">+</button>
+                                <button class="quantity-btn-prototype" style="margin-left: 10px; color: #ff4757;">🗑️</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cart-total-prototype">
+                        总计: ¥477
+                    </div>
+                    
+                    <button class="checkout-btn-prototype">结算</button>
+                </div>
+                <p><strong>设计说明：</strong>侧边栏购物车，显示商品列表、数量控制、总价和结算按钮。支持商品数量修改和删除。</p>
+            </div>
+        </div>
+        
+        <!-- 登录表单原型 -->
+        <div class="prototype-section">
+            <div class="section-title">6. 用户登录表单</div>
+            <div class="section-content">
+                <div class="login-form-prototype">
+                    <h2 style="text-align: center; margin-bottom: 25px; color: #333;">用户登录</h2>
+                    <div class="form-group-prototype">
+                        <label class="form-label-prototype">用户名:</label>
+                        <input type="text" class="form-input-prototype" placeholder="请输入用户名">
+                    </div>
+                    <div class="form-group-prototype">
+                        <label class="form-label-prototype">密码:</label>
+                        <input type="password" class="form-input-prototype" placeholder="请输入密码">
+                    </div>
+                    <button class="form-submit-prototype">登录</button>
+                    <p style="text-align: center; margin-top: 15px; color: #666;">
+                        还没有账户? <a href="#" style="color: #667eea;">立即注册</a>
+                    </p>
+                </div>
+                <p><strong>设计说明：</strong>模态框形式的登录表单，包含用户名、密码输入框和提交按钮。表单验证和错误提示。</p>
+            </div>
+        </div>
+        
+        <!-- 颜色方案 -->
+        <div class="prototype-section">
+            <div class="section-title">7. 颜色方案</div>
+            <div class="section-content">
+                <div class="color-palette">
+                    <div class="color-item">
+                        <div class="color-swatch color-primary">主色</div>
+                        <p>#667eea</p>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch color-secondary">辅助色</div>
+                        <p>#764ba2</p>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch color-accent">强调色</div>
+                        <p>#ff6b6b</p>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch color-success">成功</div>
+                        <p>#28a745</p>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch color-warning">警告</div>
+                        <p>#ffc107</p>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch color-danger">危险</div>
+                        <p>#dc3545</p>
+                    </div>
+                </div>
+                <p><strong>设计说明：</strong>采用蓝紫色渐变作为主色调，体现科技感和专业性。红色作为强调色用于价格和按钮。</p>
+            </div>
+        </div>
+        
+        <!-- 字体样式 -->
+        <div class="prototype-section">
+            <div class="section-title">8. 字体层级</div>
+            <div class="section-content">
+                <div class="typography-demo">
+                    <div class="font-sample font-h1">一级标题 - 2.5rem</div>
+                    <div class="font-sample font-h2">二级标题 - 2rem</div>
+                    <div class="font-sample font-h3">三级标题 - 1.5rem</div>
+                    <div class="font-sample font-body">正文内容 - 1rem</div>
+                    <div class="font-sample font-small">辅助文字 - 0.875rem</div>
+                </div>
+                <p><strong>设计说明：</strong>使用Arial字体族，建立清晰的字体层级。标题使用粗体，正文使用常规字重。</p>
+            </div>
+        </div>
+        
+        <!-- 交互效果 -->
+        <div class="prototype-section">
+            <div class="section-title">9. 交互效果展示</div>
+            <div class="section-content">
+                <div class="interaction-demo">
+                    <div class="interaction-item">
+                        <h4>悬停效果</h4>
+                        <p>鼠标悬停时元素上移和阴影变化</p>
+                    </div>
+                    <div class="interaction-item active">
+                        <h4>激活状态</h4>
+                        <p>选中状态的背景色变化</p>
+                    </div>
+                    <div class="interaction-item">
+                        <h4>点击反馈</h4>
+                        <p>按钮点击时的视觉反馈</p>
+                    </div>
+                    <div class="interaction-item">
+                        <h4>加载动画</h4>
+                        <p>数据加载时的动画效果</p>
+                    </div>
+                </div>
+                <p><strong>设计说明：</strong>丰富的交互效果提升用户体验，包括悬停、点击、加载等状态的视觉反馈。</p>
+            </div>
+        </div>
+        
+        <!-- 响应式设计 -->
+        <div class="prototype-section">
+            <div class="section-title">10. 响应式设计</div>
+            <div class="section-content">
+                <div class="responsive-demo">
+                    <div class="device-frame desktop-frame">
+                        <div class="device-screen">
+                            <h4>桌面端 (1200px+)</h4>
+                            <p>完整导航菜单</p>
+                            <p>4列商品网格</p>
+                            <p>侧边栏购物车</p>
+                        </div>
+                    </div>
+                    <div class="device-frame tablet-frame">
+                        <div class="device-screen">
+                            <h4>平板端 (768-1199px)</h4>
+                            <p>简化导航菜单</p>
+                            <p>2-3列商品网格</p>
+                            <p>全屏购物车</p>
+                        </div>
+                    </div>
+                    <div class="device-frame mobile-frame">
+                        <div class="device-screen">
+                            <h4>移动端 (767px以下)</h4>
+                            <p>汉堡菜单</p>
+                            <p>单列商品布局</p>
+                            <p>底部固定购物车</p>
+                        </div>
+                    </div>
+                </div>
+                <p><strong>设计说明：</strong>采用移动优先的响应式设计，在不同设备上提供最佳的用户体验。</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 添加简单的交互效果演示
+        document.addEventListener('DOMContentLoaded', function() {
+            // 交互效果演示
+            const interactionItems = document.querySelectorAll('.interaction-item');
+            interactionItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    interactionItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // 分类悬停效果
+            const categoryItems = document.querySelectorAll('.category-item-prototype');
+            categoryItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px) scale(1.05)';
+                });
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+            
+            // 商品卡片效果
+            const productCards = document.querySelectorAll('.product-card-prototype');
+            productCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                    this.style.boxShadow = '0 10px 30px rgba(0,0,0,0.2)';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 3px 15px rgba(0,0,0,0.1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+<!-- 
+来源: Claude AI助手
+提示词: 创建运动器材商城的高保真原型图，展示网站的视觉设计和交互效果
+范围: 高保真原型图.html 全文件
+-->

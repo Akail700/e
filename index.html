@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>运动器材商城 - 专业运动装备一站式购物</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-dumbbell"></i>
+                <span>运动器材商城</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">首页</a></li>
+                <li><a href="#products">商品</a></li>
+                <li><a href="#about">关于我们</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+                <button class="cart-btn" onclick="toggleCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </button>
+                <button class="login-btn" onclick="showLogin()">登录</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 轮播图 -->
+    <section id="home" class="hero-section">
+        <div class="hero-slider">
+            <div class="slide active">
+                <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&h=600&fit=crop" alt="健身器材">
+                <div class="slide-content">
+                    <h2>专业健身器材</h2>
+                    <p>打造完美身材，从选择优质器材开始</p>
+                    <button class="cta-btn">立即购买</button>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1200&h=600&fit=crop" alt="跑步机">
+                <div class="slide-content">
+                    <h2>智能跑步机</h2>
+                    <p>在家享受专业级跑步体验</p>
+                    <button class="cta-btn">查看详情</button>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1200&h=600&fit=crop" alt="瑜伽用品">
+                <div class="slide-content">
+                    <h2>瑜伽用品</h2>
+                    <p>专业瑜伽装备，提升练习品质</p>
+                    <button class="cta-btn">探索更多</button>
+                </div>
+            </div>
+        </div>
+        <div class="slider-controls">
+            <button class="prev-btn" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+            <button class="next-btn" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </section>
+
+    <!-- 商品分类 -->
+    <section class="categories">
+        <div class="container">
+            <h2>商品分类</h2>
+            <div class="category-grid">
+                <div class="category-item" onclick="filterProducts('fitness')">
+                    <i class="fas fa-dumbbell"></i>
+                    <h3>健身器材</h3>
+                </div>
+                <div class="category-item" onclick="filterProducts('cardio')">
+                    <i class="fas fa-running"></i>
+                    <h3>有氧设备</h3>
+                </div>
+                <div class="category-item" onclick="filterProducts('yoga')">
+                    <i class="fas fa-leaf"></i>
+                    <h3>瑜伽用品</h3>
+                </div>
+                <div class="category-item" onclick="filterProducts('accessories')">
+                    <i class="fas fa-tshirt"></i>
+                    <h3>运动配件</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 商品展示 -->
+    <section id="products" class="products-section">
+        <div class="container">
+            <h2>热门商品</h2>
+            <div class="filter-tabs">
+                <button class="filter-btn active" onclick="filterProducts('all')">全部</button>
+                <button class="filter-btn" onclick="filterProducts('fitness')">健身器材</button>
+                <button class="filter-btn" onclick="filterProducts('cardio')">有氧设备</button>
+                <button class="filter-btn" onclick="filterProducts('yoga')">瑜伽用品</button>
+                <button class="filter-btn" onclick="filterProducts('accessories')">运动配件</button>
+            </div>
+            <div class="products-grid" id="productsGrid">
+                <!-- 商品将通过JavaScript动态加载 -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 购物车侧边栏 -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>购物车</h3>
+            <button class="close-cart" onclick="toggleCart()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- 购物车商品将通过JavaScript动态加载 -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>总计: ¥<span id="cartTotal">0</span></span>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">结算</button>
+        </div>
+    </div>
+
+    <!-- 登录模态框 -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLogin()">&times;</span>
+            <h2>用户登录</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">用户名:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">密码:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit">登录</button>
+                <p>还没有账户? <a href="#" onclick="showRegister()">立即注册</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- 注册模态框 -->
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeRegister()">&times;</span>
+            <h2>用户注册</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="regUsername">用户名:</label>
+                    <input type="text" id="regUsername" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="regEmail">邮箱:</label>
+                    <input type="email" id="regEmail" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="regPassword">密码:</label>
+                    <input type="password" id="regPassword" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">确认密码:</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                </div>
+                <button type="submit">注册</button>
+                <p>已有账户? <a href="#" onclick="showLogin()">立即登录</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- 关于我们 -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2>关于我们</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>专业的运动器材供应商</h3>
+                    <p>我们致力于为运动爱好者提供高质量的运动器材和专业的服务。从家用健身器材到专业训练设备，我们拥有丰富的产品线，满足不同层次用户的需求。</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> 品质保证，正品行货</li>
+                        <li><i class="fas fa-check"></i> 专业售后服务</li>
+                        <li><i class="fas fa-check"></i> 快速配送</li>
+                        <li><i class="fas fa-check"></i> 价格优惠</li>
+                    </ul>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=500&h=400&fit=crop" alt="关于我们">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2>联系我们</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>地址</h4>
+                            <p>北京市朝阳区运动器材大厦</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>电话</h4>
+                            <p>400-888-9999</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>邮箱</h4>
+                            <p>service@sportsmall.com</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" placeholder="您的姓名" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="您的邮箱" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="留言内容" rows="5" required></textarea>
+                        </div>
+                        <button type="submit">发送消息</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>运动器材商城</h3>
+                    <p>专业的运动器材供应商，为您的健康生活保驾护航。</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="#home">首页</a></li>
+                        <li><a href="#products">商品</a></li>
+                        <li><a href="#about">关于我们</a></li>
+                        <li><a href="#contact">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>客户服务</h4>
+                    <ul>
+                        <li><a href="#">帮助中心</a></li>
+                        <li><a href="#">退换货政策</a></li>
+                        <li><a href="#">配送信息</a></li>
+                        <li><a href="#">售后服务</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>联系信息</h4>
+                    <p><i class="fas fa-phone"></i> 400-888-9999</p>
+                    <p><i class="fas fa-envelope"></i> service@sportsmall.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 北京市朝阳区运动器材大厦</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 运动器材商城. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 回到顶部按钮 -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+<!-- 
+来源: Claude AI助手
+提示词: 创建运动器材商城HTML页面，包含导航栏、轮播图、商品展示、购物车、用户登录等功能
+范围: index.html 全文件
+-->
